@@ -56,56 +56,102 @@ instr 1
 
 kenv linen 1, .3, p3, .1
 kfreq=p4
+/*
+ outs oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv, kfreq*2), 
+      oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv/2, kfreq)
 
- outs oscili((0dbfs+ oscili:k(0dbfs/2, 2200))*kenv, kfreq), 
-      oscili((0dbfs+ oscili:k(0dbfs/2, 2200))*kenv, kfreq)
+*/
+;progressionLoop
 
+adx=oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv, kfreq*2) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv, kfreq*4) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv, kfreq*6) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv, kfreq*8)+ oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv, kfreq*10)
+asx=oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv/2, kfreq) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv/2, 2*kfreq) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv/2, 3*kfreq) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv/2, 4*kfreq) + oscili((0dbfs+ oscili:k(0dbfs, 2200))*kenv/2, 5*kfreq)
+
+outs adx/8, asx/8
 
 endin
 
 
 instr 2
+;bass
 
-
-kenv linen 1, .3, p3, .1
+kenv linen 1, .3, p3, .2
 kfreq=p4
+/*
+ outs oscili((0dbfs+ oscili:k(0dbfs, 5))*kenv/2, kfreq, 2), 
+      oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq, 2)
+*/
 
- outs oscili((0dbfs/2+ oscili:k(0dbfs/2, 5))*kenv, kfreq, 2), 
-      oscili((0dbfs/2+oscili:k(0dbfs/2, 3))*kenv, kfreq, 2)
+adx=oscili((0dbfs+ oscili:k(0dbfs, 5))*kenv/2, kfreq, 2)+  oscili((0dbfs+ oscili:k(0dbfs, 5))*kenv/2, kfreq/2, 2) ;+  oscili((0dbfs+ oscili:k(0dbfs, 5))*kenv/2, kfreq/4, 2) 
 
+asx= oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq, 2)+ oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq/2, 2) ;+ oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq/4, 2)  
+
+
+outs adx/4, asx/4
 
 endin
 
 
 instr 3
-kenv linen 1, .3, p3, .5
+;highAsFuck
+
+kenv linen 1, .6, p3, .5
 kfreq=p4 
-outs oscili((0dbfs/4)*kenv/2, kfreq/2, 2),oscili((0dbfs/4)*kenv/2, kfreq/8, 2)
+
+/*
+outs oscili(0dbfs*kenv/4, kfreq/4, 2),oscili(0dbfs*kenv/4, kfreq/6, 2)
+*/
+
+adx=oscili(0dbfs*kenv/4, kfreq/2, 3) + oscili(0dbfs*kenv/4, kfreq*3, 3) + oscili(0dbfs*kenv/4, kfreq, 3) + oscili(0dbfs*kenv/4, kfreq*2, 3) + oscili(0dbfs*kenv/4, kfreq*4, 3)
+
+asx=oscili(0dbfs*kenv/4, kfreq/3*6, 3) + oscili(0dbfs*kenv/4, kfreq/3*2, 3) + oscili(0dbfs*kenv/4, kfreq/3*3, 3)+ oscili(0dbfs*kenv/4, kfreq/3*4, 3) + oscili(0dbfs*kenv/4, kfreq/3*5, 3)
+
+outs adx/16, asx/16
 
 
 endin 
 
-
+;panico
 
 instr 4
 kenv linen 1, .005, p3, .05
 kfreq=p4 
-outs oscili((0dbfs/4)*kenv/2, kfreq/2, 2),oscili((0dbfs/4)*kenv/2, kfreq/8, 2)
+/*
+outs oscili(0dbfs*kenv/4, kfreq/4, 2),oscili(0dbfs*kenv/4, kfreq/6, 2)
+*/
+
+adx=oscili(0dbfs*kenv/4, kfreq/2, 3)+oscili(0dbfs*kenv/4, kfreq*3, 3)+ oscili(0dbfs*kenv/4, kfreq, 3)+ oscili(0dbfs*kenv/4, kfreq*2, 3)+ oscili(0dbfs*kenv/4, kfreq*4, 3)
+
+asx=oscili(0dbfs*kenv/4, kfreq/3*6, 3) + oscili(0dbfs*kenv/4, kfreq/3*2, 3) + oscili(0dbfs*kenv/4, kfreq/3*3, 3)+ oscili(0dbfs*kenv/4, kfreq/3*4, 3) + oscili(0dbfs*kenv/4, kfreq/3*5, 3)
+
+outs adx/16, asx/16
+
 
 
 endin
 
 
 instr 5
-
+;distortion
 
 kenv linen 1, .3, p3, .1
 kfreq=p4
+/*
+ outs oscili((0dbfs+ oscili:k(0dbfs, 500))*kenv/4, kfreq, 2), 
+      oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq, 2)
+*/
 
- outs oscili((0dbfs/4+ oscili:k(0dbfs/2, 500))*kenv, kfreq, 2), 
-      oscili((0dbfs/4+oscili:k(0dbfs/2, 3))*kenv, kfreq, 2)
+
+adx=oscili((0dbfs+ oscili:k(0dbfs, 500))*kenv/2, kfreq, 2)+  oscili((0dbfs+ oscili:k(0dbfs, 500))*kenv/2, kfreq/2, 2) +  oscili((0dbfs+ oscili:k(0dbfs, 500))*kenv/2, kfreq/4, 2) 
+
+asx= oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq, 2)+ oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq/2, 2)+ oscili((0dbfs+oscili:k(0dbfs, 3))*kenv/2, kfreq/4, 2)  
 
 
+outs adx/4, asx/4
+
+endin
+
+instr 6 
+out rand(200), rand(100) 
 endin
 
 </CsInstruments> 
@@ -118,7 +164,7 @@ m theme
 
 
 
-
+/*
 
 i 1  0        0.125    277.183 
 i 1  0.125    0.125    329.628
@@ -165,10 +211,34 @@ i 1 3.5      0.125    207.652
 i 1 3.625    0.125    246.942
 i 1 3.75     0.125    329.628
 i 1 3.875    0.125    311.127
+*/
+
+
+
+;bass
+i 2  0     1.125   69.2957  
+i 2  1     1.125  82.4069   
+i 2  2     1.125   77.7817 
+i 2  3     1.125   61.7354 
+i 2  4     1.125   69.2957 
+i 2  5     1.125   92.4986 
+i 2  6     1.125   82.4069
+i 2  7     1.125   123.471
+
+i 2  8     1.125   69.2957  
+i 2  9     1.125   82.4069   
+i 2  10    1.125   77.7817 
+i 2  11    1.125   61.7354 
+i 2  12    1.125   69.2957 
+i 2  13    1.125   92.4986 
+i 2  14    1.125   82.4069
+i 2  15    1   123.471
+
+
+
  
 s
 ;section2
-n theme
 
 s
 ;section3
@@ -678,14 +748,17 @@ i 4 9      0.125  1318.51
 i 4 9.125  0.125  1318.51
 i 4 9.25   0.5  1318.51
 i 4 9.75   0.25  1318.51
+/*
 i 4 10     0.25  1318.51
 i 4 10.25  0.25  1318.51
 i 4 10.5   0.25  1318.51
 i 4 9.75   0.25  1318.51
+*/
 
-
-i 4 10      0.375  1318.51
-i 4 10.375  0.375  1318.51
+i 4 10      0.25  1318.51
+i 4 10.25  0.125  1318.51
+i 4 10.375  0.125  1318.51
+i 4 10.5      0.25  1318.51
 i 4 10.75   0.25  1318.51
 i 4 11      0.125  1318.51
 i 4 11.125  0.125  1318.51
@@ -695,9 +768,9 @@ i 4 12      0.25  1318.51
 i 4 12.25   0.25  1318.51
 i 4 12.5    0.25  1318.51
 i 4 12.75   0.25  1318.51
-
+;panico
 i 4 13  0.1875  1318.51
-i 4 13.1875  0.1875  1318.51   ;panico
+i 4 13.1875  0.1875  1318.51   
 i 4 13.375  0.375  1318.51
 i 4 13.75  0.25  1318.51
 i 4 14  0.125  1318.51
@@ -960,14 +1033,18 @@ i 4 9      0.125  1318.51
 i 4 9.125  0.125  1318.51
 i 4 9.25   0.5  1318.51
 i 4 9.75   0.25  1318.51
+/*
 i 4 10     0.25  1318.51
 i 4 10.25  0.25  1318.51
 i 4 10.5   0.25  1318.51
 i 4 9.75   0.25  1318.51
+*/
 
 
-i 4 10      0.375  1318.51
-i 4 10.375  0.375  1318.51
+i 4 10      0.25  1318.51
+i 4 10.25  0.125  1318.51
+i 4 10.375  0.125  1318.51
+i 4 10.5      0.25  1318.51
 i 4 10.75   0.25  1318.51
 i 4 11      0.125  1318.51
 i 4 11.125  0.125  1318.51
@@ -977,9 +1054,9 @@ i 4 12      0.25  1318.51
 i 4 12.25   0.25  1318.51
 i 4 12.5    0.25  1318.51
 i 4 12.75   0.25  1318.51
-
+;panico
 i 4 13  0.1875  1318.51
-i 4 13.1875  0.1875  1318.51   ;panico
+i 4 13.1875  0.1875  1318.51   
 i 4 13.375  0.375  1318.51
 i 4 13.75  0.25  1318.51
 i 4 14  0.125  1318.51
@@ -1275,14 +1352,17 @@ i 4 9      0.125  1318.51
 i 4 9.125  0.125  1318.51
 i 4 9.25   0.5  1318.51
 i 4 9.75   0.25  1318.51
+/*
 i 4 10     0.25  1318.51
 i 4 10.25  0.25  1318.51
 i 4 10.5   0.25  1318.51
 i 4 9.75   0.25  1318.51
+*/
 
-
-i 4 10      0.375  1318.51
-i 4 10.375  0.375  1318.51
+i 4 10      0.25  1318.51
+i 4 10.25  0.125  1318.51
+i 4 10.375  0.125  1318.51
+i 4 10.5      0.25  1318.51
 i 4 10.75   0.25  1318.51
 i 4 11      0.125  1318.51
 i 4 11.125  0.125  1318.51
@@ -1292,9 +1372,9 @@ i 4 12      0.25  1318.51
 i 4 12.25   0.25  1318.51
 i 4 12.5    0.25  1318.51
 i 4 12.75   0.25  1318.51
-
+;panico
 i 4 13  0.1875  1318.51
-i 4 13.1875  0.1875  1318.51   ;panico
+i 4 13.1875  0.1875  1318.51   
 i 4 13.375  0.375  1318.51
 i 4 13.75  0.25  1318.51
 i 4 14  0.125  1318.51
@@ -1381,14 +1461,17 @@ i 4 9      0.125  1318.51
 i 4 9.125  0.125  1318.51
 i 4 9.25   0.5  1318.51
 i 4 9.75   0.25  1318.51
+/*
 i 4 10     0.25  1318.51
 i 4 10.25  0.25  1318.51
 i 4 10.5   0.25  1318.51
 i 4 9.75   0.25  1318.51
+*/
 
-
-i 4 10      0.375  1318.51
-i 4 10.375  0.375  1318.51
+i 4 10      0.25  1318.51
+i 4 10.25  0.125  1318.51
+i 4 10.375  0.125  1318.51
+i 4 10.5      0.25  1318.51
 i 4 10.75   0.25  1318.51
 i 4 11      0.125  1318.51
 i 4 11.125  0.125  1318.51
@@ -1413,6 +1496,50 @@ i 4 15  0.25  1108.73
 i 4 15.25  0.25  1108.73
 i 4 15.5  0.25  1108.73
 i 4 15.75  0.25  1108.73
+
+s
+
+m nowForReal
+;bass
+i 2  0     1.125   69.2957  
+i 2  1     1.125   82.4069   
+i 2  2     1.125   77.7817 
+i 2  3     1.125   61.7354 
+i 2  4     1.125   69.2957 
+i 2  5     1.125   92.4986 
+i 2  6     1.125   82.4069
+i 2  7     1.125   123.471
+;i 2  8     3   69.2957
+/*
+i 2  8      1.125   69.2957  
+i 2  9      1.125   82.4069   
+i 2  10     1.125   77.7817 
+i 2  11     1.125   61.7354 
+i 2  12     1.125   69.2957 
+i 2  13     1.125   92.4986 
+i 2  14     1.125   82.4069
+i 2  15     1       123.471
+*/
+
+
+i 3 0  0.33  2217.46   ;highAsFuck
+i 3 0.33  0.33  1661.22
+i 3 0.66  0.34 2217.46  
+i 3 1  1.33  1318.51
+i 3 2.33 0.34 1244.51
+
+i 3 2.66  0.34  1318.51
+i 3 3  0.33  830.61
+i 3 3.33 0.33 987.77
+i 3 3.66  0.34  1318.51
+i 3 4 0.5 1479.98
+i 3 4.5  0.5  1318.51
+i 3 5 2.5 1244.51
+i 3 7.5  0.5  1108.73
+
+;i 3 6 3  1318.51
+
+s
 
 e
 
